@@ -32,4 +32,10 @@ public class LoginController {
     public ResponseEntity<SignUpResponse> signUp(@Valid @RequestBody final SignUpRequest signUpRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(memberService.signUp(signUpRequest));
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(final HttpSession session) {
+        session.invalidate();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
