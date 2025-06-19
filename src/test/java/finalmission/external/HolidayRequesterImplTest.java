@@ -9,6 +9,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import finalmission.dto.HolidayResponse;
+import finalmission.fake.FakeHolidayRestClient;
 import java.time.LocalDate;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -20,11 +21,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.client.MockRestServiceServer;
 
+@RestClientTest(FakeHolidayRestClient.class)
 @Import(HolidayRequesterImpl.class)
-@RestClientTest(HolidayRestClient.class)
+@ActiveProfiles("test")
 class HolidayRequesterImplTest {
 
     @MockitoBean
