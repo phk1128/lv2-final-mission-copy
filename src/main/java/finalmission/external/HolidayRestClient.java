@@ -13,7 +13,7 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClient;
 
 @Component
-public class HolidayRestClient {
+public class HolidayRestClient implements HolidayClient {
 
     private final RestClient restClient;
     private final String serviceKey;
@@ -33,6 +33,7 @@ public class HolidayRestClient {
         this.serviceKey = serviceKey;
     }
 
+    @Override
     public HolidayApiResponse getHolidaysByYearAndMonth(final int year, final int month) {
         try {
             return restClient
