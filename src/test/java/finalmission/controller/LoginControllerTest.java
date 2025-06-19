@@ -13,7 +13,7 @@ class LoginControllerTest {
 
     @Test
     void loginTest() {
-        final LoginRequest loginRequest = new LoginRequest("test", "1234");
+        final LoginRequest loginRequest = new LoginRequest("test@email.com", "1234");
         RestAssured.given().log().all()
                 .contentType(ContentType.JSON)
                 .body(loginRequest)
