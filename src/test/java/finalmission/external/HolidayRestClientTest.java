@@ -1,16 +1,19 @@
 package finalmission.external;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.queryParam;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
 
 import finalmission.dto.HolidayApiResponse;
 import finalmission.dto.HolidayApiResponse.Body;
 import finalmission.dto.HolidayResponse;
+import finalmission.fake.FakeHolidayRestClient;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -18,20 +21,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-@RestClientTest(HolidayRestClient.class)
+@RestClientTest
+@Import(FakeHolidayRestClient.class)
+@ActiveProfiles("test")
 class HolidayRestClientTest {
 
     @MockitoBean
     private JpaMetamodelMappingContext jpaMetamodelMappingContext;
 
     @Autowired
-    private HolidayRestClient holidayRestClient;
+    private FakeHolidayRestClient holidayRestClient;
 
     @Autowired
     private MockRestServiceServer server;
@@ -126,5 +133,6 @@ class HolidayRestClientTest {
             );
         }
     }
+
 
 }

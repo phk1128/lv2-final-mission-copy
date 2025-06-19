@@ -4,6 +4,8 @@ import finalmission.exception.BadRequestException;
 import finalmission.exception.ErrorCode;
 import finalmission.global.BaseTimeEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +27,7 @@ public class Member extends BaseTimeEntity {
 
     private String password;
 
+    @Enumerated(value = EnumType.STRING)
     private MemberRole role;
 
     public Member(final String email, final String password, final MemberRole role) {
