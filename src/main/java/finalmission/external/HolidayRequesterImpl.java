@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class HolidayRequesterImpl implements HolidaysRequester {
 
-    private final HolidayRestClient holidayRestClient;
+    private final HolidayClient holidayRestClient;
 
     @Override
     public List<HolidayResponse> getHolidays(final LocalDate date) {
