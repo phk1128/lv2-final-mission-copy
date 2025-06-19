@@ -1,6 +1,7 @@
-INSERT INTO member (email, password, created_at, modified_at) VALUES
-    ('test', '1234', NOW(), NOW()),
-    ('test2', '1234', NOW(), NOW());
+INSERT INTO member (email, password, created_at, modified_at, role) VALUES
+    ('test@email.com', '1234', NOW(), NOW(), 'USER'),
+    ('test2@eamil.com', '1234', NOW(), NOW(), 'USER'),
+    ('admin@email.com', '1234', NOW(), NOW(), 'ADMIN');
 
 INSERT INTO holiday (date, name, is_holiday, created_at, modified_at) VALUES
     ('2025-01-01', '신정', true, NOW(), NOW()),

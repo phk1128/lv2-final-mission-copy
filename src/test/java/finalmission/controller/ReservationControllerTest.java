@@ -29,7 +29,7 @@ class ReservationControllerTest {
 
     @BeforeEach
     void setUp() {
-        final LoginRequest loginRequest = new LoginRequest("test", "1234");
+        final LoginRequest loginRequest = new LoginRequest("test@email.com", "1234");
         sessionId = RestAssured.given().contentType(ContentType.JSON)
                 .body(loginRequest)
                 .when()
@@ -74,7 +74,7 @@ class ReservationControllerTest {
                     .then().log().all()
                     .statusCode(HttpStatus.OK.value())
                     .body("$", hasSize(greaterThanOrEqualTo(1)))
-                    .body("email", everyItem(equalTo("test")))
+                    .body("email", everyItem(equalTo("test@email.com")))
                     .body("numberOfPeople", hasItem(4));
         }
 
@@ -110,7 +110,7 @@ class ReservationControllerTest {
                     .then().log().all()
                     .statusCode(HttpStatus.OK.value())
                     .body("id", equalTo(reservationId))
-                    .body("email", equalTo("test"))
+                    .body("email", equalTo("test@email.com"))
                     .body("startTime", equalTo(10))
                     .body("endTime", equalTo(12))
                     .body("numberOfPeople", equalTo(3));
