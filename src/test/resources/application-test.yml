@@ -1,0 +1,4 @@
+public:
+  api:
+    base_url: http://test.api.com
+    key: test-key
