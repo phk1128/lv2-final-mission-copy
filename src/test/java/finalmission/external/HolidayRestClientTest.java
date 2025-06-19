@@ -13,6 +13,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import finalmission.dto.HolidayApiResponse;
 import finalmission.dto.HolidayApiResponse.Body;
 import finalmission.dto.HolidayResponse;
+import finalmission.fake.FakeHolidayRestClient;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -20,20 +21,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-@RestClientTest(HolidayRestClient.class)
+@RestClientTest
+@Import(FakeHolidayRestClient.class)
+@ActiveProfiles("test")
 class HolidayRestClientTest {
 
     @MockitoBean
     private JpaMetamodelMappingContext jpaMetamodelMappingContext;
 
     @Autowired
-    private HolidayRestClient holidayRestClient;
+    private FakeHolidayRestClient holidayRestClient;
 
     @Autowired
     private MockRestServiceServer server;
