@@ -20,7 +20,7 @@ public class HolidayScheduler {
     private final HolidayService holidayService;
 
     @Async
-    @Scheduled(cron = "0 0 0 1 * ?")
+    @Scheduled(cron = "${schedules.cron.holiday.save}")
     public void saveHoliday() {
         final List<Holiday> holidays = holidaysRequester.getHolidays(LocalDate.now()).stream()
                 .map(this::convertHoliday)
