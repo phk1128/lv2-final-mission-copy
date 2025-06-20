@@ -38,7 +38,7 @@ class HolidayRestClientTimeoutTest {
     }
 
     @Test
-    @DisplayName("읽기 타임아웃(5초)이 발생하면 ResourceAccessException이 발생한다")
+    @DisplayName("읽기 타임아웃이 5초 발생하면 ResourceAccessException이 발생한다")
     void readTimeoutTest() {
         // given
         wireMockServer.stubFor(get(urlPathEqualTo("/getRestDeInfo"))
